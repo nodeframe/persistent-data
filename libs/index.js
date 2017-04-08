@@ -30,18 +30,20 @@ var defaultPath = __dirname + '/./data.bson';
 var Data = function () {
   function Data(data) {
     var path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultPath;
+    var mergeOption = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
     _classCallCheck(this, Data);
 
     this.defaultData = data;
     this.path = path;
+    this.mergeOption = mergeOption;
   }
 
   _createClass(Data, [{
     key: 'merge',
-    value: function merge(data) {
+    value: function merge(data, options) {
       this.load();
-      var newData = (0, _deepmerge2.default)(this.data, data);
+      var newData = (0, _deepmerge2.default)(this.data, data, options || this.mergeOption);
       _fs2.default.writeFileSync(this.path, bson.serialize(newData));
       return newData;
     }
