@@ -7,14 +7,15 @@ const defaultPath = __dirname+'/./data.bson'
 
 export default class Data {
 
-  constructor(data,path=defaultPath){
+  constructor(data,path=defaultPath,mergeOption={}){
     this.defaultData = data
     this.path = path
+    this.mergeOption = mergeOption
   }
 
-  merge(data,options={}){
+  merge(data,options){
     this.load()
-    const newData = deepmerge(this.data,data,options)
+    const newData = deepmerge(this.data,data,options||this.mergeOption)
     fs.writeFileSync(this.path,bson.serialize(newData))
     return newData
   }
