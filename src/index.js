@@ -12,9 +12,9 @@ export default class Data {
     this.path = path
   }
 
-  merge(data){
+  merge(data,options={}){
     this.load()
-    const newData = deepmerge(this.data,data)
+    const newData = deepmerge(this.data,data,options)
     fs.writeFileSync(this.path,bson.serialize(newData))
     return newData
   }

@@ -1,6 +1,6 @@
 {
   "name": "@nodeframe/persistent-data",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "bson persistent data",
   "main": "libs/index.js",
   "scripts": {
